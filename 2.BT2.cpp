@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+#define fi first
+#define se second
+ 
+using namespace std;
+using ll = long long;
+const int Mod = 1e9+7;
+
+map<ll,int> pt(ll n) {
+    map<ll,int> mp;
+    for (ll i = 2; i*i <= n; i++) {
+        if (n % i == 0) {
+            while (n % i == 0) {
+                mp[i]++;
+                n /= i;
+            }
+        }
+    }
+    if (n > 1) mp[n]++;
+    return mp;
+}
+
+map<ll,int> mul(vector<ll> &a) {
+    map<ll,int> mp;
+    for (int i = 0; i < a.size(); i++) {
+        map<ll,int> mp1 = pt(a[i]);
+        for (auto x : mp1) {
+            mp[x.fi] += x.se;
+        }
+    }
+    return mp;
+}
+
+bool check(map<ll,int> A, map<ll,int> B) {
+    for (auto x : B) {
+        if (A[x.fi] == 0 || A[x.fi] < x.se) return false;
+    } 
+    return true;
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    //code here
+    int n, m;
+    cin >> n >> m;
+    vector<ll> a(n);
+    for (ll &x : a) cin >> x;
+    map<ll,int> A = mul(a);
+    vector<ll> ans;
+    for (int i = 1; i <= m; i++) {
+        vector<ll> b(n);
+        for (ll &x : b) cin >> x;
+        map<ll,int> B = mul(b);
+        if (check(A,B)) ans.push_back(i);
+    }
+    cout << ans.size() << '\n';
+    for (ll x : ans) cout << x << ' ';
+    cout << '\n';
+}
