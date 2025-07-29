@@ -6,8 +6,7 @@ using namespace std;
 using ll = long long;
 const int Mod = 1e9+7;
 
-map<ll,int> pt(ll n) {
-    map<ll,int> mp;
+void pt(ll n, map<ll,int> &mp) {
     for (ll i = 2; i*i <= n; i++) {
         if (n % i == 0) {
             while (n % i == 0) {
@@ -17,7 +16,6 @@ map<ll,int> pt(ll n) {
         }
     }
     if (n > 1) mp[n]++;
-    return mp;
 }
 
 ll get(map<ll,int> mp) {
@@ -38,10 +36,7 @@ int main(){
         ll m; cin >> m;
         map<ll,int> mp;
         for (int i = 0; i <= 2; i++) {
-            map<ll,int> mp1 = pt(m+i);
-            for (auto x : mp1) {
-                mp[x.fi] += x.se;
-            }
+            pt(m+i,mp);
         }
         ll d = get(mp);
         for (auto x : mp) {
