@@ -1,0 +1,1 @@
+{"name":"Local: AC","url":"d:\\CodeCOMP\\1.Fenwick_tree\\AC.cpp","tests":[{"id":1753364567509,"input":"5\n\n1 2 3 4 5\n\n3\n\n2 1 5\n\n1 2 5\n\n2 1 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CodeCOMP\\1.Fenwick_tree\\AC.cpp","group":"local","local":true}
